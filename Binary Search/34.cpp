@@ -1,5 +1,5 @@
 // LeetCode 34 - Find First and Last Position of Element in Sorted Array
-// Find the starting and ending positions of target.
+// Find the first and last occurrence of target in a sorted array.
 // Return [-1, -1] if target is not found.
 //
 // Example 1:
@@ -21,33 +21,35 @@ class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
         int first = -1, last = -1;
-        int low = 0, high = nums.size() - 1;
+        int l = 0, r = nums.size() - 1;
 
-        while (low <= high) {
-            int mid = (low + high) / 2;
+        while (l <= r) {
+            int m = (l + r) / 2;
 
-            if (nums[mid] >= target)
-                high = mid - 1;
+            if (nums[m] == target) {
+                first = m;
+                r = m - 1;
+            }
+            else if (nums[m] < target)
+                l = m + 1;
             else
-                low = mid + 1;
-
-            if (nums[mid] == target)
-                first = mid;
+                r = m - 1;
         }
 
-        low = 0;
-        high = nums.size() - 1;
+        l = 0;
+        r = nums.size() - 1;
 
-        while (low <= high) {
-            int mid = (low + high) / 2;
+        while (l <= r) {
+            int m = (l + r) / 2;
 
-            if (nums[mid] <= target)
-                low = mid + 1;
+            if (nums[m] == target) {
+                last = m;
+                l = m + 1;
+            }
+            else if (nums[m] < target)
+                l = m + 1;
             else
-                high = mid - 1;
-
-            if (nums[mid] == target)
-                last = mid;
+                r = m - 1;
         }
 
         return {first, last};
