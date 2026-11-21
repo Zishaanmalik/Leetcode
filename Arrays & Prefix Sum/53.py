@@ -1,4 +1,3 @@
-```text
 # LeetCode 53 - Maximum Subarray
 # Find the contiguous subarray with the largest sum.
 
@@ -32,4 +31,3 @@ nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 
 obj = Solution()
 print(obj.maxSubArray(nums))
-```
